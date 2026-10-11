@@ -104,6 +104,60 @@ function App() {
 
   return (
     <div className="app">
+      {/* Homepage Section */}
+      <section className="homepage min-h-[60vh] flex items-center justify-center bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-4xl px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Luyện viết chữ Hán & tiếng Trung
+          </h2>
+          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            Trực quan, không cần cài app, luyện mỗi ngày để nhớ lâu. Bắt đầu với chữ hôm nay hoặc chọn bộ từ vựng.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button
+              className="bg-accent text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-colors"
+              onClick={() => alert("Mở Từ điển")}
+            >
+              Mở Từ điển
+            </Button>
+            <Button
+              className="bg-white text-gray-800 px-6 py-3 rounded-md border border-gray-300 hover:bg-gray-50 transition-colors"
+              onClick={() => alert("Bút thuận")}
+            >
+              Bút thuận
+            </Button>
+          </div>
+        </div>
+      </section>
+
+<div className="mx-auto px-4 py-6">
+        <Separator />
+        <h3 className="text-xl font-medium text-gray-900 mb-4 text-center">Công cụ học tập</h3>
+        <p className="text-sm text-gray-500 mb-6 text-center">Chọn một công cụ để bắt đầu ngay</p>
+        
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-8">
+          {[
+            { label: "Từ điển", desc: "Tra nghĩa, pinyin, ví dụ" },
+            { label: "Bút thuận", desc: "Xem thứ tự nét, luyện viết" },
+            { label: "Lộ trình", desc: "Học theo cấp HSK" },
+            { label: "Trò chơi", desc: "Ghép từ, tìm chữ" },
+            { label: "Tạo vở tập", desc: "In PDF ô li" },
+            { label: "Flashcard", desc: "In thẻ hai mặt" },
+            { label: "Luyện nghe", desc: "Nghe rồi gõ lại" },
+            { label: "Luyện nói", desc: "Chấm phát âm" },
+          ].map((tool) => (
+            <div key={tool.label} className="p-4 text-left hover:shadow-lg transition-shadow cursor-pointer border border-gray-100">
+              <div className="w-6 h-6 mx-auto mb-3 flex items-center justify-center rounded-md bg-gray-100">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M{M.icon === 'Search' ? 'M21 21l-4.3-4.3' : 'M12 2v2M12 20v2M16 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM5 9h14l1-3H5l1 3zm0 8h14l1-3H5l1 3z' : 'M12 2v2M12 20v2M16 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM5 9h14l1-3H5l1 3zm0 8h14l1-3H5l1 3z'}" />
+                </svg>
+              </div>
+              <h4 className="text-sm font-medium text-gray-800 mb-1">{tool.label}</h4>
+              <p className="text-xs text-gray-500">{tool.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
       <header className="app-header">
         <h1>{book1.name}</h1>
         <p className="subtitle">{book1.nameCn}</p>
