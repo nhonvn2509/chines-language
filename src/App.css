@@ -6,7 +6,20 @@
   --accent: #c0392b;
   --accent-soft: #fdecea;
   --border: #e5e7eb;
+  /* Breakpoints */
+  --breakpoint-mobile: 640px;
+  --breakpoint-tablet: 1024px;
 }
+
+/* Mobile-first base */
+
+/* ========================================
+   RESPONSIVE: Fluid container + breakpoints
+   ======================================== */
+@media (min-width: 640px) { .md\:block { display: block; } }
+@media (min-width: 1024px) { .lg\:block { display: block; } }
+@media (min-width: 640px) { .md\:flex { display: flex; } }
+@media (min-width: 1024px) { .lg\:flex { display: flex; } }
 
 * {
   box-sizing: border-box;
@@ -20,9 +33,21 @@ body {
 }
 
 .app {
-  max-width: 900px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 24px 16px 64px;
+  /* Fluid width with max constraints */
+  width: 100%;
+
+  @media (min-width: 640px) {
+    max-width: 720px;
+    padding: 32px 24px 80px;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 960px;
+    padding: 48px 32px 120px;
+  }
 }
 
 .app-header {
@@ -33,12 +58,24 @@ body {
     margin: 0 0 4px;
     font-size: 30px;
     color: var(--accent);
+
+    @media (min-width: 640px) {
+      font-size: 36px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 40px;
+    }
   }
 
   .subtitle {
     margin: 0 0 8px;
     font-size: 18px;
     font-weight: 600;
+
+    @media (min-width: 640px) {
+      font-size: 20px;
+    }
   }
 
   .meta {
@@ -52,8 +89,16 @@ body {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   overflow: hidden;
+
+  @media (min-width: 640px) {
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    margin-bottom: 24px;
+  }
 }
 
 .lesson-header {
@@ -66,9 +111,19 @@ body {
   border: none;
   cursor: pointer;
   text-align: left;
-  font-size: 16px;
+  font-size: 15px;
   color: var(--text);
   transition: background 0.2s;
+
+  @media (min-width: 640px) {
+    font-size: 16px;
+    padding: 18px 24px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 17px;
+    padding: 20px 28px;
+  }
 
   &:hover {
     background: var(--accent-soft);
@@ -77,16 +132,41 @@ body {
   .lesson-title {
     font-weight: 700;
     white-space: nowrap;
+
+    @media (min-width: 640px) {
+      font-size: 18px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 20px;
+    }
   }
 
   .lesson-pinyin {
     color: var(--accent);
     font-weight: 600;
+    font-size: 13px;
+
+    @media (min-width: 640px) {
+      font-size: 14px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 15px;
+    }
   }
 
   .lesson-titlevi {
     color: var(--text-soft);
     font-size: 14px;
+
+    @media (min-width: 640px) {
+      font-size: 15px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 16px;
+    }
   }
 }
 
@@ -95,9 +175,25 @@ body {
   border-top: 1px dashed var(--border);
 
   h3 {
-    margin: 16px 0 10px;
-    font-size: 17px;
+    margin: 12px 0 8px;
+    font-size: 15px;
     color: var(--accent);
+
+    @media (min-width: 640px) {
+      font-size: 16px;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 17px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    padding: 8px 24px 16px;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 12px 32px 20px;
   }
 }
 
@@ -276,5 +372,235 @@ body {
     font-size: 13px;
     color: var(--text-soft);
     font-style: italic;
+  }
+}
+/* ========================================
+   RESPONSIVE: Full-width layout below 640px
+   ======================================== */
+@media (max-width: 639px) {
+  .vocab-table th,
+  .vocab-table td {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .vocab-table .han {
+    font-size: 16px;
+  }
+
+  .vocab-table .hanviet {
+    font-size: 13px;
+  }
+
+  .vocab-table .links-cell button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .lesson-body h3 {
+    font-size: 15px;
+  }
+
+  .memory-toggle {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+
+  .memory-line {
+    font-size: 13px;
+  }
+
+  .memory-gifs .gif-card {
+    padding: 8px;
+  }
+
+  .memory-gifs .gif-card img {
+    max-height: 100px;
+  }
+
+  .memory-gifs .gif-card figcaption {
+    font-size: 13px;
+  }
+
+  .memory-gifs .mini-play {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+
+  .grammar-item {
+    padding: 12px 12px;
+  }
+
+  .grammar-item h4 {
+    font-size: 14px;
+  }
+
+  .grammar-item .cautruc {
+    font-size: 13px;
+  }
+
+  .grammar-item ul {
+    font-size: 13px;
+  }
+
+  .grammar-item .giaithich {
+    font-size: 12px;
+  }
+
+  .Button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+/* Tablet: 640px - 1023px */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .vocab-table th,
+  .vocab-table td {
+    padding: 7px 9px;
+  }
+
+  .vocab-table .han {
+    font-size: 16px;
+  }
+
+  .vocab-table .hanviet {
+    font-size: 14px;
+  }
+
+  .vocab-table .links-cell button {
+    padding: 3px 7px;
+    font-size: 11px;
+  }
+
+  .lesson-body h3 {
+    font-size: 16px;
+  }
+
+  .memory-toggle {
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+
+  .memory-line {
+    font-size: 14px;
+  }
+
+  .memory-gifs .gif-card {
+    padding: 10px;
+  }
+
+  .memory-gifs .gif-card img {
+    max-height: 130px;
+  }
+
+  .memory-gifs .gif-card figcaption {
+    font-size: 13px;
+  }
+
+  .memory-gifs .mini-play {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+
+  .grammar-item {
+    padding: 14px 16px;
+  }
+
+  .grammar-item h4 {
+    font-size: 15px;
+  }
+
+  .grammar-item .cautruc {
+    font-size: 14px;
+  }
+
+  .grammar-item ul {
+    font-size: 14px;
+  }
+
+  .grammar-item .giaithich {
+    font-size: 13px;
+  }
+
+  .Button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Desktop: 1024px+ */
+@media (min-width: 1024px) {
+  .vocab-table th,
+  .vocab-table td {
+    padding: 8px 12px;
+  }
+
+  .vocab-table .han {
+    font-size: 18px;
+  }
+
+  .vocab-table .hanviet {
+    font-size: 15px;
+  }
+
+  .vocab-table .links-cell button {
+    padding: 4px 10px;
+    font-size: 13px;
+  }
+
+  .lesson-body h3 {
+    font-size: 17px;
+  }
+
+  .memory-toggle {
+    padding: 6px 14px;
+    font-size: 14px;
+  }
+
+  .memory-line {
+    font-size: 15px;
+  }
+
+  .memory-gifs .gif-card {
+    padding: 12px;
+  }
+
+  .memory-gifs .gif-card img {
+    max-height: 150px;
+  }
+
+  .memory-gifs .gif-card figcaption {
+    font-size: 14px;
+  }
+
+  .memory-gifs .mini-play {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+
+  .grammar-item {
+    padding: 16px 18px;
+  }
+
+  .grammar-item h4 {
+    font-size: 16px;
+  }
+
+  .grammar-item .cautruc {
+    font-size: 15px;
+  }
+
+  .grammar-item ul {
+    font-size: 15px;
+  }
+
+  .grammar-item .giaithich {
+    font-size: 14px;
+  }
+
+  .Button {
+    padding: 12px 24px;
+    font-size: 15px;
   }
 }
