@@ -1,121 +1,89 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useState } from "react"
+import book1 from "./data/book1"
+import "./App.css"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [openLesson, setOpenLesson] = useState(null)
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app">
+      <header className="app-header">
+        <h1>{book1.name}</h1>
+        <p className="subtitle">{book1.nameCn}</p>
+        <p className="meta">
+          {book1.author} | {book1.publisher} | {book1.edition}
+        </p>
+        <p className="meta">
+          Tổng cộng {book1.totalLessons} bài — từ vựng &amp; ngữ pháp đầy đủ
+        </p>
+      </header>
 
-      <div className="ticks"></div>
+      <main>
+        {book1.lessons.map((lesson) => (
+          <section key={lesson.id} className="lesson">
+            <button
+              type="button"
+              className="lesson-header"
+              onClick={() =>
+                setOpenLesson(openLesson === lesson.id ? null : lesson.id)
+              }
+            >
+              <span className="lesson-title">
+                Bài {lesson.id}: {lesson.title}
+              </span>
+              <span className="lesson-pinyin">{lesson.pinyin}</span>
+              <span className="lesson-titlevi">{lesson.titleVi}</span>
+            </button>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            {openLesson === lesson.id && (
+              <div className="lesson-body">
+                <h3>Từ vựng ({lesson.vocabulary.length} từ)</h3>
+                <table className="vocab-table">
+                  <thead>
+                    <tr>
+                      <th>Hán tự</th>
+                      <th>Pinyin</th>
+                      <th>Loại từ</th>
+                      <th>Nghĩa</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {lesson.vocabulary.map((word, i) => (
+                      <tr key={i}>
+                        <td className="han">{word.han}</td>
+                        <td>{word.pinyin}</td>
+                        <td>{word.loai}</td>
+                        <td>{word.nghia}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+                <h3>Ngữ pháp ({lesson.grammar.length} điểm)</h3>
+                <div className="grammar-list">
+                  {lesson.grammar.map((g, i) => (
+                    <div key={i} className="grammar-item">
+                      <h4>
+                        {i + 1}. {g.point}
+                      </h4>
+                      <p className="cautruc">
+                        <strong>Cấu trúc:</strong> {g.cauTruc}
+                      </p>
+                      <ul>
+                        {g.viDu.map((v, j) => (
+                          <li key={j}>{v}</li>
+                        ))}
+                      </ul>
+                      <p className="giaithich">{g.giaiThich}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        ))}
+      </main>
+    </div>
   )
 }
 
