@@ -123,6 +123,122 @@ body {
     font-weight: 600;
     white-space: nowrap;
   }
+
+  td.hanviet {
+    color: var(--accent);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  td.links-cell {
+    button {
+      display: inline-block;
+      margin: 1px 4px 1px 0;
+      padding: 1px 6px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--accent);
+      font-size: 12px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background 0.15s;
+
+      &:hover {
+        background: var(--accent-soft);
+      }
+    }
+  }
+
+  tr.vocab-row.is-open {
+    background: var(--accent-soft);
+  }
+}
+
+.memory-row td {
+  background: #fffdf5;
+}
+
+.toggle-cell {
+  text-align: center;
+}
+
+.memory-toggle {
+  padding: 3px 10px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+
+  &:hover {
+    background: var(--accent-soft);
+  }
+}
+
+.memory-box {
+  padding: 4px 6px 8px;
+
+  .memory-line {
+    margin: 4px 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+
+    &:first-child {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 15px;
+    }
+  }
+
+  .memory-gifs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0 0;
+
+    .gif-card {
+      margin: 0;
+      padding: 6px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      text-align: center;
+
+      img {
+        display: block;
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+        background: #fff;
+      }
+
+      figcaption {
+        margin-top: 4px;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .mini-play {
+        margin-left: 6px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: #fff;
+        cursor: pointer;
+        font-size: 12px;
+
+        &:hover {
+          background: var(--accent-soft);
+        }
+      }
+    }
+  }
 }
 
 .grammar-list {
